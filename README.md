@@ -1,3 +1,4 @@
+### Rental of Cleaning Tools
 Django x MongoDB  
 
 <code>virtualenv env</code> 
@@ -12,6 +13,6 @@ Django x MongoDB
 
  http://127.0.0.1:8000/
  
-![alt text](https://github.com/farhanka/rct-test/blob/master/rct2.png)
+![alt text](https://github.com/farhanka/rct-test/blob/master/rct.png)
 
 
