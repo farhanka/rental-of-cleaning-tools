@@ -1,0 +1,65 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark bg-green-primary sticky-top">
+  <div class="container-fluid ps-md-3">
+    <a class="navbar-brand" href="{%if not user.is_authenticated %}{% url 'landing' %}{%else%}{% url 'home' %}{%endif%}">
+      RCT
+      <!-- <img style="width: 55px; height: 55px;"src="/media/img/rct.png" alt="RCT"> -->
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <hr>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        {%if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link active menu {% if request.path == '/home/' %} current {%endif%}"  id="home"  href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active menu {% if request.path == '/status/' %} current {%endif%}"id="home" onclick="current()" href="{% url 'status' %}">Status Sewa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active menu {% if request.path == '/sewakan/' %} current {%endif%}" id="home" onclick="current()" href="{% url 'sewakan' %}">Sewakan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active menu {% if request.path == '/my/' %} current {%endif%}" id="home" onclick="current()" href="{% url 'my' %}">MyItem</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active menu" href="{% url 'about' %}">About</a>
+        </li> -->
+        {%endif%}
+      </ul>
+      {%if user.is_authenticated%}
+      <div class="d-flex justify-content-between px-md-3">
+        <a class=" text-dark" href="{% url 'profil' %}">
+          <img  class="nav-profile-pic rounded-circle" src="{% if user.foto.url == 'https://res.cloudinary.com/django-rct/image/upload/v1/media/null' %} https://res.cloudinary.com/django-rct/image/upload/v1621320504/media/profil/default-profil.png {% else %}  {{ user.foto.url }} {% endif %}" alt="{{  user.foto }}">
+          {{ user.username }}
+          
+        </a>
+        <a  class="nav-link" href="{% url 'keluar' %}"><i class="btn rounded-circle btn-outline-dark btn-md bi bi-power"></i></a>
+      </div>
+    </div>
+    {%endif%}
+    
+    {%if not user.is_authenticated %}
+    <div class="d-flex">
+      <div class="me-1">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a  class="btn btn-sm btn-success" href="{% url 'daftar' %}">DAFTAR</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="me-1">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a  class="btn btn-sm btn-outline-dark" href="{% url 'masuk' %}">MASUK</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+      {%endif%}
+  </div>
+</nav>
+ 

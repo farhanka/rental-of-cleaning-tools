@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>RCT - Sewakan Peralatan</title>
+{% endblock %}
+
+{% block content %}
+<small class="d-flex justify-content-center mb4 alert bg-green-secondary text-success ">Sewakan alat kebersihan yang Anda miliki</small>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="w-300">
+            {% if pesan %}
+            <small class="d-flex justify-content-center text-success text-center alert alert-success m-1">{{ pesan }}</small>
+            <hr>
+            {% endif %}
+            <form action="/sewakan/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for f in form %}
+                    {{ f.label }}
+                    <p>{{ f }}</p>
+                    <code class="text-danger">{{f.errors}}</code>
+
+                {% endfor %}
+
+                <button type="submit" class="w-100 btn bg-green-primary mt-2 mb-5 text-white">Sewakan</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

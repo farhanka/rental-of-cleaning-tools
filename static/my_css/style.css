@@ -1,0 +1,279 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
+*{
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu{
+    background:#82b879;
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0.3rem 5px;
+    border-radius: 5px;
+}
+
+.menu:hover{
+    background:#4caa3b;
+}
+
+.current{
+    background:#4caa3b;
+    padding: 0.2rem;
+    text-align: center;
+    margin: 0.3rem 5px;
+    border-radius: 5px;
+}
+
+#clock{
+    color:#91C788;
+    font-size: 12px;
+}
+
+tr, .card, form,
+.alert-success, .alert-danger{
+
+    animation: myTrans 0.9s;
+}
+
+small{
+    font-size: 12px;
+}
+
+body{
+    animation-timing-function: ease-out;
+}
+
+.navbar-dark .navbar-toggler {
+    color:rgba(73, 245, 39, 0.336);
+    border-color: rgb(255, 255 ,255);
+}
+
+.navbar-toggler-icon{
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+.navbar-brand{
+    padding: 0 0.5rem 0 0.5rem;
+    font-weight:900;
+    font-style: italic;
+}
+
+@keyframes myTrans{
+    from{
+        opacity: 0.5;
+        /* transform:translateY(-20px) */
+        
+    }
+    to{
+        opacity: 1;
+        /* transform:  translateY(0); */
+
+    }
+}
+.bg-green-primary{
+    background-color:#91C788;
+}
+
+.bg-green-secondary{
+    background-color:#DDFFBC;
+}
+
+.bg-gradient-1{
+    background: rgb(145,199,136);
+    background: linear-gradient(121deg, rgba(145,199,136,1) 0%, rgba(221,255,188,1) 100%);
+}
+
+.bg-gradient-2{
+    background: rgb(145,199,136);
+    background: linear-gradient(176deg, rgba(145,199,136,1) 57%, rgba(221,255,188,1) 100%);
+}
+header{
+    position: sticky;
+}
+body{
+    min-height: 100vh;
+}
+
+.sticky-footer{
+    position: sticky;
+    top: 100%;
+    font-size: 12px;
+}
+
+footer{
+    width: 100%;
+    background: #91C788;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    padding: 1.1rem; 
+}
+
+.card-img-top {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+
+.card{
+    border-color: #91C788;
+}
+
+.card-header {
+    background-color:#DDFFBC;
+}
+.card, .card-body{
+    border-bottom-left-radius:8px ;
+    border-bottom-right-radius:8px ;
+}
+
+tbody{
+    font-size: 14px;
+}
+
+.keterangan{
+    max-height: fit-content;
+    font-size: 10px;
+}
+
+#img-sewa{
+    object-fit: cover;
+}
+
+#alat{
+    object-fit:cover;
+}
+
+.bd-example {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -.75rem 0;
+    border: solid #dee2e6;
+    border-width: 1px 0 0;
+}
+.form-control, .form-select{
+ border-radius: 8px;
+ border-color: #91C788;
+ background-color:rgba(241, 248, 240, 0.164)
+}
+
+.table{
+    border-color: #91C788;
+    width:max-content;
+}
+
+.h-400{
+    height: 400px;
+}
+
+.w-300{
+    width: 330px;
+}
+
+.w-250{
+    width: 250px;
+    margin: 2px 5px;
+}
+
+@media only screen and (max-width: 400px) {
+    .w-300{
+        width: 100%;
+    }
+    
+    .w-250{
+        width: 90%;
+        margin-bottom: 24px;
+    }
+
+    .h-400{
+        width: 100%;
+    }
+
+    
+}
+
+.login-form{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+thead{
+    background-color: #defcd8;
+    border-color: rgb(172, 171, 171);
+}
+
+/* tbody:nth-child(even){
+    background-color: #DDFFBC;
+} */
+
+.right{
+    display: flex;
+    justify-content: flex-end;
+}
+/* Bottom left text */
+.btn-outline-success,
+.btn-outline-warning {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 10px;
+   }
+
+.btn-outline-primary {
+position: absolute;
+top: 2px;
+right: 2px;
+font-size: 10px;
+}
+
+.card-title{
+    font-size: 1.0rem;
+}
+.card-text{
+    font-size: 0.8rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+.text-danger, .text-success{
+    font-size: 0.8rem;
+}
+
+.about{
+ background: url('https://3.bp.blogspot.com/-tagrvOVN_IA/XRUs_oUiSHI/AAAAAAAAH10/xKle6y4y7PwYyhKVbJNWKvTh57VftdIDACKgBGAs/w0/apex-legends-pathfinder-uhdpaper.com-4K-104.jpg');
+}
+
+#alats{
+    transition:all 0.4s;
+}
+
+#alats:hover{
+    transform: scale(1.1);
+}
+
+.nav-profile-pic{
+    height: 50px;
+    width: 50px;
+    object-fit:cover
+}
+
+
+#profil{
+object-fit: cover;
+width: 150px;
+height: 150px;
+}
+
+.text-pink{
+    color:#ea10e3;
+}

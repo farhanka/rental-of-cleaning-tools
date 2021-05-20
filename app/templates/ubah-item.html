@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>RCT - Edit Data Peralatan</title>
+{% endblock %}
+
+{% block content %}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-success ">Edit data peralatan</small>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="w-300">
+            {% for msg in messages %}
+            {%if msg.tags == 'success' %}
+            <small class="d-flex justify-content-center text-success text-center alert alert-success m-1">{{ msg }}</small>
+            <hr>
+            {%else%}
+            <small class="d-flex justify-content-center text-danger text-center alert alert-danger m-1">{{ msg }}</small>
+            <hr>
+            {%endif%}
+            {% endfor %}
+
+            <form action="{% url 'ubah' my_item.id %} " method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.non_field_errors}}
+                {% for f in form %}
+                    {{ f.label }}
+                    <p>{{ f }}
+                        <code class="text-danger">{{ f.errors }}</code>
+                    </p>
+                {% endfor %}
+                <code>Gambar: <a href="{{ my_item.gambar.url }}">{{ my_item.gambar.url }}</a></code> <br>
+
+                <button type="submit" class=" w-100 btn bg-green-primary my-2 text-white">Submit</button>
+                <a href="{% url 'my' %}" class="w-100 btn bg-green-secondary mb-5">Kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

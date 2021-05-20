@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>RCT - Sewa</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container p-4">
+    <div class="row justify-content-center">
+        {% for msg in messages %}
+        {%if msg.tags == 'success' %}
+        <small class="d-flex justify-content-center text-success text-center alert alert-success m-1">{{ msg }}</small>
+        <hr>
+        {%endif%}
+        {%endfor%}
+        <div class="col-12 col-md-7 col-lg-6  p-2">
+            <div class="card py-2">
+                <img class="h-400" id="img-sewa" src="{% if tool.gambar.url == 'https://res.cloudinary.com/django-rct/image/upload/v1/media/null' %} https://res.cloudinary.com/django-rct/image/upload/v1621320430/media/img/default-alat.jpg {% else %}  {{ tool.gambar.url }} {% endif %}"" alt="{{  tool.gambar }}">
+                <!-- <img style="height: 400px;" src="/media/img/default.jpg" alt="{{  tool.gambar }}"> -->
+            </div>
+        </div>
+        <div class="col-12  col-md-5 col-lg-4 p-2">
+            <h2>{{ tool.nama_alat }}</h2>
+            <p><strong>Keterangan</strong><br> {{ tool.keterangan }} </p>
+            <p><strong>Pemilik</strong><br> <a href="{{ tool.pemilik.foto.url }}"> {{ tool.pemilik.first_name }} {{ tool.pemilik.last_name }}</a> - {{ tool.pemilik.hp }} </p>
+            <p> <strong>Harga per {{ tool.durasi }}</strong><br> Rp {{ tool.harga }} </p>
+            <form action="{% url 'sewa' tool.id %}" method="POST" class="mt-4">
+                {% csrf_token %}
+                <label for="id_durasi"><strong>Masukkan Durasi Penyewaan</strong> ({{ tool.durasi }})</label>
+                <div class="d-flex">
+
+                    <input type="number" min="1" max="30" name="durasi" class="form-control mr-3" value="1" required="" id="id_durasi" style="width:100px; margin-right: 14px;">
+                    <button class="btn bg-green-primary text-white {%if not tool.tersedia %} disabled {%endif%}">Sewa Sekarang</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

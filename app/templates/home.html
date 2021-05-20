@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{%load static %}
+
+{% block title %}
+    <title>RCT</title>
+{% endblock %}
+
+{% block content %}
+{% if tools  %}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-success ">Daftar alat kebersihan yang dapat disewa</small>
+{%else%}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-pink ">Belum ada alat kebersihan yang dapat disewa</small>
+{% endif %}
+<div class="container my-3">
+    <div class="row justify-content-center">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'info' %} 
+                <small class="text-center alert alert-warning my-4">
+                    {{ message }}. <a class="" href="{% url 'profil' %}"> <strong> Lengkapi Profil</strong></a>
+                </small>
+                {% elif message.tags == 'success' %} 
+                <small class=" w-100 text-success text-center alert alert-success m-1">{{ message }}. Buka <a href="{%url 'status'%} "> Status Sewa </a> untuk melihat detail.</small>
+                <!-- <hr> -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% for tool in tools %}
+        <!-- <div class="col-9 col-md-4 col-lg-3 my-4 w-250" id="alats"> -->
+        <div class="my-4 w-250" id="alats">
+            <a href="{% url 'halaman_sewa' tool.id %}">
+
+                <div class="card">
+                    <img id="alat" style="height: 220px;" src="{% if tool.gambar.url == 'https://res.cloudinary.com/django-rct/image/upload/v1/media/null' %} https://res.cloudinary.com/django-rct/image/upload/v1621320430/media/img/default-alat.jpg {% else %}  {{ tool.gambar.url }} {% endif %}" alt="{{  tool.gambar }}">
+                    {%if tool.tersedia %}   
+                    <div class="btn btn-outline-success">Tersedia</div>
+                    {%else%} 
+                    <div class="btn btn-outline-warning">Tidak Tersedia</div>
+                    {%endif%}
+                    {%if tool.pemilik_id == user.id %}   
+                    <div class="btn btn-outline-primary">Milik Anda</div>
+                    {%endif%}
+                    <div style="height: 160px;" class="card-body text-center text-white bg-green-primary p-3">
+                      <h5 class="card-title">{{ tool.nama_alat }}</h5>
+                      <p class="card-text">Rp. {{ tool.harga }} / {{ tool.durasi }} </p>
+                      <button class="btn bg-green-secondary text-dark">LIHAT</button>
+                    </div>
+                  </div>
+            </a>
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

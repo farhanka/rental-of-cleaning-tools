@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>RCT - MyItem</title>
+{% endblock %}
+{% block content %}
+{% if my_items %}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-success ">Daftar alat kebersihan yang Anda sewakan</small>
+{%else%}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-pink ">Belum ada alat kebersihan yang Anda sewakan</small>
+{% endif %}
+<div class="container-fluid">
+<div class="d-flex justify-content-center">
+<div class="table-responsive">
+  <table class="table table-bordered ">
+    <thead>
+      <tr class="text-center">
+        <th>Nama Barang</th>
+        <th>Durasi Penyewaan</th>
+        <th>Harga Per Durasi</th>
+        <th>Status</th>
+        <!-- <th>Disewa Oleh</th> -->
+        <th colspan="2">Aksi</th>
+    </tr>
+    </thead>
+
+
+    {% for my in my_items %}
+    <tbody>
+          <tr>
+              <td>{{ my.nama_alat }} </td>
+              <td>{{ my.durasi }} </td>
+              <td>Rp {{ my.harga }} </td>
+              <!-- <td class="text-center">{% if my.tersedia %} <i class="fs-4 text-success bi bi-check"></i>  {%else%} <i class="fs-4 text-warning bi bi-x-circle-fill"></i> {%endif%}</td> -->
+              <td class="">{% if my.tersedia %} <code class="text-success ">Tersedia</code>  {%else%} <code class="text-warning">Sedang Disewa</code> {%endif%}</td>
+
+              <!-- <td class="">{{ sewa.penyewa.first_nama }} - {{ sewa.penyewa.hp }}</td> -->
+              
+              <td class="text-center">
+                  <a href="{% url 'ubah' my.id %}" class="btn  btn-sm bg-green-primary text-white "><i class=" bi bi-pencil-square"></i></a>
+              </td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-danger {% if not my.tersedia %} disabled {%endif%}"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#hapus-{{my.id}}">
+                    <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+              <div class="modal fade" id="hapus-{{my.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
+                        <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Hapus item <strong> {{ my.nama_alat | upper }}</strong>?
+                      </div>
+                      <div class="modal-footer">
+                          <a href = "{% url 'hapus' my.id %}" class="btn btn-danger">Hapus</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </tr>
+
+        </tbody>
+          {% endfor %}
+  </table>
+</div>
+</div>
+</div>
+
+{% endblock %}

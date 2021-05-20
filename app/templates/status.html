@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>RCT - Status Penyewaan</title>
+{% endblock %} 
+
+{% block content %}
+{% if penyewaan %}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-success ">Daftar peralatan yang sedang dalam penyewaan</small>
+{%else%}
+<small class="d-flex justify-content-center mb-4 alert bg-green-secondary text-pink ">Anda belum melakukan penyewaan</small>
+{% endif %}
+<!-- <div class="container"> -->
+  
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="table-responsive">
+      <table class="table-bordered table">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">ID</th>
+            <th scope="col">Nama Alat</th>
+            <th scope="col">Pemilik Alat</th>
+            <th scope="col">Durasi Sewa</th>
+            <th scope="col">Total Harga</th>
+            <th scope="col">Waktu Pengembalian</th>
+            <th scope="col">Disewa oleh</th>
+            <th scope="col">Aksi</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        {% for sewa in penyewaan %}
+              <tr>
+                <th scope="row">{{ sewa.id }}</th>
+                  <td><a href="{% url 'halaman_sewa' sewa.alat_id %}">{{ sewa.alat.nama_alat }} </a></td>
+                  <td>{% if sewa.pemilik.id == user.id %} <strong class="text-pink">Anda{%else%} <a href="{{ sewa.penyewa.foto.url }}"> {{ sewa.penyewa.first_name }} {{ sewa.penyewa.last_name }}</a> - {{ sewa.pemilik.hp }} {%endif%} </td>
+                  <td>{{ sewa.durasi }} Jam  </td>
+                  <td>Rp {{sewa.total_harga }} </td>
+                  <td>{{ sewa.waktu_kembali }}</td>
+                  <td>{% if sewa.penyewa.id == user.id %} <strong class="text-pink">Anda{%else%}<a href="{{ sewa.penyewa.foto.url }}"> {{ sewa.penyewa.first_name }} {{ sewa.penyewa.last_name }}</a> - {{ sewa.penyewa.hp }} {%endif%} </td>
+                  <td class="text-center">
+                      <a href="{% url 'selesai' sewa.id %}" class="btn btn-sm btn-outline-dark">Tandai Selesai</a>
+                  </td>
+
+              </tr>
+
+              {% endfor %}
+            </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
