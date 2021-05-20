@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class User(AbstractUser):
     hp = models.CharField(max_length=14)
-    foto = models.ImageField(default="profil/default-profil",null=True, blank=True, upload_to="profil/")
+    foto = models.ImageField(default="profil/default-profil.png",null=True, blank=True, upload_to="profil/")
 
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Alat(models.Model):
     durasi = models.CharField(max_length=20, choices=ctype, default="Hari")
     keterangan = models.TextField(blank=True, max_length=255)
     tersedia = models.BooleanField(default=True)
-    gambar = models.ImageField(default="img/default-alat", null=True, blank=True, upload_to="img/")
+    gambar = models.ImageField(default="img/default-alat.jpg", null=True, blank=True, upload_to="img/")
     pemilik = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

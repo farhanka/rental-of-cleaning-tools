@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from rct import settings
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'rct.settings')
@@ -18,4 +18,6 @@ def main():
 
 
 if __name__ == '__main__':
+
+    print("HERE: ",settings.BASE_DIR)
     main()
